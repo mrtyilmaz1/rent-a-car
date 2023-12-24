@@ -1,10 +1,12 @@
 package com.x.rentacar.model;
 
+import com.x.rentacar.Enums.Colours;
+import com.x.rentacar.Enums.Gear;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Embeddable
+@Entity
 @Table(name = "cars")
 @Getter
 @Setter
@@ -17,7 +19,16 @@ public class Cars {
 
     private String model;
 
+    @Enumerated(EnumType.STRING)
+    private Colours colour;
+
+    @Enumerated(EnumType.STRING)
+    private Gear gear;
+
     private Double price;
+
+    @Column(name = "total_km")
+    private int totalKm;
 
     @Column(name = "units_in_stock")
     private Long unitsInStock;
