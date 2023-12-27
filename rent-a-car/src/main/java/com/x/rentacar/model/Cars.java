@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class Cars {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String brand;
@@ -27,11 +27,13 @@ public class Cars {
 
     private Double price;
 
+    private int year;
+
     @Column(name = "total_km")
     private int totalKm;
 
     @Column(name = "units_in_stock")
-    private Long unitsInStock;
+    private int unitsInStock;
 
     private Boolean active;
 
