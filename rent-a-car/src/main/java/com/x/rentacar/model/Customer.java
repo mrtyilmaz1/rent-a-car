@@ -1,5 +1,6 @@
 package com.x.rentacar.model;
 
+import com.x.rentacar.Enums.Roles;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +22,10 @@ public class Customer {
 
     private String surname;
 
+    private String password;
+
     private Address address;
 
-    private String roles;
+    private Roles roles;
 
 }

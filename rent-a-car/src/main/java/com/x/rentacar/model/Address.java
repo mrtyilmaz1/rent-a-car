@@ -19,8 +19,9 @@ public class Address {
 
     private String district;
 
-    private String postCode;
+    private int postCode;
 
     @Column(name = "address_line")
     private String addressLine;
+
 }
