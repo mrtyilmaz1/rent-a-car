@@ -26,6 +26,7 @@ public class Customer {
 
     private Address address;
 
+    @Enumerated(EnumType.STRING)
     private Roles roles;
 
 }
