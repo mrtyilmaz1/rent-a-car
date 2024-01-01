@@ -11,6 +11,7 @@ import java.util.List;
 
 public class JwtUserDetails implements UserDetails {
 
+    private static final long serialVersionUID = -311220231234560402L;
     private String email;
     private  String password;
     private List<SimpleGrantedAuthority> authorities;
