@@ -1,6 +1,5 @@
-package com.x.rentacar.DataInitializer;
+package com.x.rentacar.dataInitializer;
 
-import com.x.rentacar.model.Cars;
 import com.x.rentacar.model.OrderDetail;
 import com.x.rentacar.repository.OrderDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;

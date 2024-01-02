@@ -1,6 +1,6 @@
-package com.x.rentacar.DataInitializer;
+package com.x.rentacar.dataInitializer;
 
-import com.x.rentacar.Enums.Roles;
+import com.x.rentacar.enums.Roles;
 import com.x.rentacar.model.Address;
 import com.x.rentacar.model.Customer;
 import com.x.rentacar.repository.CustomerRepository;

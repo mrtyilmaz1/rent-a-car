@@ -1,4 +1,4 @@
-package com.x.rentacar.DataInitializer;
+package com.x.rentacar.dataInitializer;
 
 import com.x.rentacar.model.Order;
 import com.x.rentacar.repository.OrderRepository;

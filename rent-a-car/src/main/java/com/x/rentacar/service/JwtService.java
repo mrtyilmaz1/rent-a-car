@@ -1,6 +1,6 @@
 package com.x.rentacar.service;
 
-import com.x.rentacar.Dto.LoginDto;
+import com.x.rentacar.dto.LoginDto;
 import com.x.rentacar.model.Customer;
 import com.x.rentacar.repository.CustomerRepository;
 import io.jsonwebtoken.Claims;
@@ -9,7 +9,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;

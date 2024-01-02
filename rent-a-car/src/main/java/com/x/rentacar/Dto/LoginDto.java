@@ -1,4 +1,4 @@
-package com.x.rentacar.Dto;
+package com.x.rentacar.dto;
 
 import lombok.Data;
 

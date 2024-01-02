@@ -1,4 +1,4 @@
-package com.x.rentacar.Enums;
+package com.x.rentacar.enums;
 
 public enum Roles {
     ROLE_USER, ROLE_ADMIN

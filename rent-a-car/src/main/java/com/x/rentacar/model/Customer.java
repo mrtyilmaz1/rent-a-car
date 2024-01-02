@@ -1,6 +1,6 @@
 package com.x.rentacar.model;
 
-import com.x.rentacar.Enums.Roles;
+import com.x.rentacar.enums.Roles;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

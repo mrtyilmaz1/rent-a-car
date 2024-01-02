@@ -1,7 +1,7 @@
 package com.x.rentacar.model;
 
-import com.x.rentacar.Enums.Colours;
-import com.x.rentacar.Enums.Gear;
+import com.x.rentacar.enums.Colors;
+import com.x.rentacar.enums.Gear;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public class Cars {
     private String model;
 
     @Enumerated(EnumType.STRING)
-    private Colours colour;
+    private Colors color;
 
     @Enumerated(EnumType.STRING)
     private Gear gear;
