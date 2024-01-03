@@ -31,7 +31,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String email = null;
 
         if (authHeader != null && authHeader.startsWith("Bearer ")){
-            token = authHeader.substring(7);
+            token = authHeader.substring(7); // 7. karakterden itibaren.
             email = jwtService.extraractEmail(token);
         }
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null){

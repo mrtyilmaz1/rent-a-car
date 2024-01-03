@@ -35,19 +35,21 @@ public class CustomerControler {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/addCustomer")
-    public ResponseEntity<Customer> addUser(@RequestBody Customer customer){
+    public ResponseEntity<Customer> addUser(@RequestBody Customer customer /* Bu, HTTP isteği içindeki JSON verisini kullanarak bir Customer nesnesi oluşturulmasını sağlar. */){
         return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.OK);
 
     }
 
 
+    // AuthenticationManager'ı kullanılarak kullanıcının kimlik bilgilerinin doğrulanması gerçekleştirilir.
     @PostMapping("/getToken")
     public ResponseEntity<LoginDto> authenticateAndGetToken(@RequestBody AuthRequest authRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
-        if (authentication.isAuthenticated()){
-            return new ResponseEntity<>(jwtService.generateToken(authentication), HttpStatus.OK);
+        if (authentication.isAuthenticated() /* Eğer kimlik doğrulama başarılıysa, yani kullanıcı geçerliyse, bu blok çalışır. */){
+            return new ResponseEntity<>(jwtService.generateToken(authentication), // Bu metodun çağrılmasıyla, geçerli kullanıcının kimlik bilgileri kullanılarak bir JWT (JSON Web Token) oluşturulur.
+                    HttpStatus.OK);
         }
-        throw new UsernameNotFoundException("invalid user details");
+        throw new UsernameNotFoundException("invalid user details"); //Eğer kimlik doğrulama başarısız olursa, yetersiz veya hatalı kullanıcı bilgileri nedeniyle bir UsernameNotFoundException fırlatılır.
     }
 
 

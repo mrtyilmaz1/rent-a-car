@@ -20,9 +20,11 @@ public class CustomerService {
     private PasswordEncoder passwordEncoder;
 
     public Customer addCustomer(Customer customer){
+        // Rol null ise otomatik olar user tanımlamak için.
         if (Objects.isNull(customer.getRoles())){
             customer.setRoles(Roles.ROLE_USER);
         }
+        // şifreyi kodlayarak saklamak için.
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return customerRepository.save(customer);
     }

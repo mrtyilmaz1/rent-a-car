@@ -14,12 +14,12 @@ public class JwtUserDetails implements UserDetails {
     private static final long serialVersionUID = -311220231234560402L;
     private String email;
     private  String password;
-    private List<SimpleGrantedAuthority> authorities;
+    private List<SimpleGrantedAuthority> authorities; // Kullanıcının sahip olduğu yetkileri listede tutmak için gerekli
 
     public JwtUserDetails (Customer userInfo){
         email = userInfo.getEmail();
         password = userInfo.getPassword();
-        authorities = Arrays.stream(userInfo.getRoles().toString().split(","))
+        authorities = Arrays.stream(userInfo.getRoles().toString().split(",")) // Roleeri virgül ile ayırarak listelemek için gerekli.
                 .map(SimpleGrantedAuthority::new).toList();
 
     }
