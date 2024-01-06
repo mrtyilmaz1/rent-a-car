@@ -1,5 +1,7 @@
 package com.x.rentacar.model;
 
+
+import com.x.rentacar.enums.Brands;
 import com.x.rentacar.enums.Colors;
 import com.x.rentacar.enums.Gear;
 import jakarta.persistence.*;
@@ -15,7 +17,10 @@ public class Cars {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String brand;
+    @Column(name = "brand_id")
+    private Long brandId;
+
+    private Brands brand;
 
     private String model;
 

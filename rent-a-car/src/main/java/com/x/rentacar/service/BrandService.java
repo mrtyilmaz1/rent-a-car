@@ -1,12 +1,15 @@
 package com.x.rentacar.service;
 
-import com.x.rentacar.repository.CarsRepository;
+import com.x.rentacar.repository.BrandRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CarsService {
-    private CarsRepository carsRepository;
+public class BrandService {
+
+    private final BrandRepository brandRepository;
+
+
 
 }
