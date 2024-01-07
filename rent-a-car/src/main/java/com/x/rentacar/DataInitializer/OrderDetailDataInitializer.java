@@ -15,12 +15,12 @@ public class OrderDetailDataInitializer implements CommandLineRunner {
         OrderDetail orderDetail1 = new OrderDetail();
         orderDetail1.setId(1L); orderDetail1.setOrderId(1L);
         orderDetail1.setCarId(1L); orderDetail1.setPrice(525000.0);
-        orderDetail1.setRentDay(2);
+        orderDetail1.setRentDay(2); orderDetail1.setQuantity(3);
 
         OrderDetail orderDetail2 = new OrderDetail();
         orderDetail2.setId(2L); orderDetail2.setOrderId(2L);
         orderDetail2.setCarId(2L); orderDetail2.setPrice(650000.0);
-        orderDetail2.setRentDay(1);
+        orderDetail2.setRentDay(1); orderDetail2.setQuantity(2);
 
         orderDetailRepository.save(orderDetail1);
         orderDetailRepository.save(orderDetail2);

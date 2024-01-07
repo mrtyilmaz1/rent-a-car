@@ -25,4 +25,6 @@ import lombok.Setter;
         @Column(name = "rent_day")
         private int rentDay;
 
+        private int quantity;
+
     }

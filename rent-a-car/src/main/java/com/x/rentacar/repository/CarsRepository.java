@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface CarsRepository extends JpaRepository<Cars , Long> {
 
 
+
+
 }
