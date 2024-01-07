@@ -2,10 +2,10 @@ package com.x.rentacar.service;
 
 import com.x.rentacar.dto.OrderCarInfo;
 import com.x.rentacar.dto.OrderRequest;
-import com.x.rentacar.model.Cars;
+import com.x.rentacar.model.Car;
 import com.x.rentacar.model.Order;
 import com.x.rentacar.model.OrderDetail;
-import com.x.rentacar.repository.CarsRepository;
+import com.x.rentacar.repository.CarRepository;
 import com.x.rentacar.repository.OrderDetailRepository;
 import com.x.rentacar.repository.OrderRepository;
 import jakarta.transaction.Transactional;
@@ -25,13 +25,13 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
-    private final CarsRepository carsRepository;
+    private final CarRepository carRepository;
 
     private void carUnitStockCheck(List<OrderCarInfo> orderCarInfoList) {
 
         orderCarInfoList.forEach(carInfo -> {
-            Long carStock = Long.valueOf(carsRepository.findById(carInfo.getCarId())
-                    .map(Cars::getUnitsInStock)
+            Long carStock = Long.valueOf(carRepository.findById(carInfo.getCarId())
+                    .map(Car::getUnitsInStock)
                     .orElseThrow(() -> new RuntimeException("Ürün bulunamadı" + carInfo.getCarId())));
 
             if (carStock - carInfo.getQuantity() < 0) {
@@ -54,7 +54,7 @@ public class OrderService {
         Order ordered = orderRepository.save(order);
 
         orderRequest.getOrderCarInfoList().forEach(e -> {
-            Optional<Cars> car = carsRepository.findById(e.getCarId());
+            Optional<Car> car = carRepository.findById(e.getCarId());
 
             if (car.isPresent()) {
                 OrderDetail orderDetail = new OrderDetail();
@@ -69,7 +69,7 @@ public class OrderService {
                     car.get().setActive(false);
                 }
                 car.get().setUnitsInStock(lasUnitStock - e.getQuantity());
-                carsRepository.save(car.get());
+                carRepository.save(car.get());
             }
 
         });
