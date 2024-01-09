@@ -6,13 +6,18 @@ import com.x.rentacar.model.Customer;
 import com.x.rentacar.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class CustomerDataInitializer implements CommandLineRunner {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -30,19 +35,18 @@ public class CustomerDataInitializer implements CommandLineRunner {
         Customer customer1 = new Customer();
         customer1.setId(1L); customer1.setEmail("asd@gmail.com");
         customer1.setFirstName("murat"); customer1.setSurname("yilmaz");
-        customer1.setPassword("12345"); customer1.setAddress(address1);
-        customer1.setRoles(Roles.ROLE_ADMIN);
+        customer1.setPassword("12345"); customer1.setPassword(passwordEncoder.encode(customer1.getPassword()));
+        customer1.setAddress(address1); customer1.setRoles(Roles.ROLE_ADMIN);
 
         Customer customer2 = new Customer();
         customer2.setId(2L); customer2.setEmail("qwe@gmail.com");
         customer2.setFirstName("hasan"); customer2.setSurname("demircan");
-        customer2.setPassword("54321"); customer2.setAddress(address2);
+        customer2.setPassword("54321"); customer2.setPassword(passwordEncoder.encode(customer2.getPassword()));
+        customer2.setAddress(address2);
         customer2.setRoles(Roles.ROLE_USER);
 
         customerRepository.save(customer1);
         customerRepository.save(customer2);
-
-
 
     }
 }

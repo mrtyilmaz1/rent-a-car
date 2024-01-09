@@ -40,7 +40,7 @@ public class CarDataInitializer implements CommandLineRunner {
         car1.setId(1L); car1.setBrandId(1L);
         car1.setBrand(Brands.HONDA); car1.setModel("Civic");
         car1.setColor(Colors.WHITE); car1.setGear(Gear.MANUAL);
-        car1.setPrice(525000.0); car1.setYear(2006); car1.setTotalKm(115000);
+        car1.setPrice(1000.0); car1.setYear(2006); car1.setTotalKm(115000);
         car1.setUnitsInStock(5); car1.setActive(true);
         car1.setImage("C://Users//murat//Desktop//HTML//rent-a-car-ui//SampleImages//WhiteHondaCivic");
 
@@ -48,7 +48,7 @@ public class CarDataInitializer implements CommandLineRunner {
         car2.setId(2L); car2.setBrandId(2L);
         car2.setBrand(Brands.FIAT); car2.setModel("Egea");
         car2.setColor(Colors.BLACK); car2.setGear(Gear.AUTOMATIC);
-        car2.setPrice(650000.0); car2.setYear(2015); car2.setTotalKm(160000);
+        car2.setPrice(1200.0); car2.setYear(2015); car2.setTotalKm(160000);
         car2.setUnitsInStock(2); car2.setActive(true);
         car2.setImage("C://Users//murat//Desktop//HTML//rent-a-car-ui//SampleImages//BlackFiatEgea");
         carRepository.save(car1);

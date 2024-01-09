@@ -20,7 +20,7 @@ import lombok.Setter;
         @Column(name = "car_id")
         private Long carId;
 
-        private Double price;
+        private Double totalPrice;
 
         @Column(name = "rent_day")
         private int rentDay;

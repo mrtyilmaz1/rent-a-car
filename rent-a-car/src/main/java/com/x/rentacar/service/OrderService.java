@@ -58,7 +58,7 @@ public class OrderService {
 
             if (car.isPresent()) {
                 OrderDetail orderDetail = new OrderDetail();
-                orderDetail.setPrice(car.get().getPrice());
+                orderDetail.setTotalPrice(car.get().getPrice() * ordered.getRentDay());
                 orderDetail.setQuantity(e.getQuantity());
                 orderDetail.setCarId(e.getCarId());
                 orderDetail.setOrderId(ordered.getId());

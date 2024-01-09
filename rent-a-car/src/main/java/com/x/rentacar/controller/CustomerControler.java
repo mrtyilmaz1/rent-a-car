@@ -25,14 +25,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class CustomerControler {
 
-    @Autowired
-    private CustomerService customerService;
 
-    @Autowired
-    private JwtService jwtService;
+    private final CustomerService customerService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+
+    private final JwtService jwtService;
+
+
+    private final AuthenticationManager authenticationManager;
 
     @PostMapping("/addCustomer")
     public ResponseEntity<Customer> addUser(@RequestBody Customer customer /* Bu, HTTP isteği içindeki JSON verisini kullanarak bir Customer nesnesi oluşturulmasını sağlar. */){
