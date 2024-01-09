@@ -19,7 +19,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Transactional // Update işlemi başarısız olursa db'yi eski haline getirecek.
 public class CarService {
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
     private static final String UPLOAD_DIR = "uploads";
 
     public Car updateCar (MultipartFile file, Car car){ // MultipartFile file parametresi, bu metodun çağrıldığı yerden gelen dosya verilerini almak için kullanılır.

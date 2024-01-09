@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CarController {
 
-    private CarService carService;
+    private final CarService carService;
 
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -27,7 +27,9 @@ public class CarController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
-    public Car getCar(@PathVariable(value = "id") Long id) { return carService.getCarById(id); }
+    public Car getCar(@PathVariable(value = "id") Long id) {
+        return carService.getCarById(id);
+    }
 
     @PutMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")

@@ -9,6 +9,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class JwtService {
 
     private final CustomerRepository customerRepository;
@@ -57,7 +59,9 @@ public class JwtService {
         // Eğer e-posta adresi UserDetails nesnesinin kullanıcı adına (username) eşleşiyorsa ve token henüz geçerliyse, true döndür
     }
 
+
     public LoginDto generateToken(Authentication authentication){
+        log.info("generateToken içine girdi.");
         LoginDto loginDto = new LoginDto();
         Optional<Customer> customerOptional = customerRepository.findByEmail(authentication.getName());
         // Kullanıcının e-posta adresine göre müşteriyi arar

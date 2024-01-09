@@ -13,11 +13,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class CustomerService {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public Customer addCustomer(Customer customer){
         // Rol null ise otomatik olar user tanımlamak için.
