@@ -34,4 +34,21 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
+    public Customer signUp(Customer customer){
+
+        if (Objects.isNull(customer.getRoles()) || customer.getRoles().equals(Roles.ROLE_ADMIN) ){
+            customer.setRoles(Roles.ROLE_USER);
+        }
+
+        if (customerRepository.existsByEmail (customer.getEmail())) {
+            log.error("Bu mail adresi zaten kullanılmaktadır.");
+            throw new RuntimeException("Bu mail adresi zaten kullanılmaktadır.");
+        }
+
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        return customerRepository.save(customer);
+    }
+
+
+
 }

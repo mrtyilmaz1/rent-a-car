@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,21 +26,22 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class CustomerControler {
 
-
     private final CustomerService customerService;
-
 
     private final JwtService jwtService;
 
-
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/addCustomer")
-    public ResponseEntity<Customer> addUser(@RequestBody Customer customer /* Bu, HTTP isteği içindeki JSON verisini kullanarak bir Customer nesnesi oluşturulmasını sağlar. */){
-        return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.OK);
-
+    @PostMapping("/signUp")
+    public ResponseEntity<Customer> signUp(@RequestBody Customer customer /* Bu, HTTP isteği içindeki JSON verisini kullanarak bir Customer nesnesi oluşturulmasını sağlar. */){
+        return new ResponseEntity<>(customerService.signUp(customer), HttpStatus.OK);
     }
 
+    @PostMapping("/addCustomer")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<Customer> addUser(@RequestBody Customer customer){
+        return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.OK);
+    }
 
     // AuthenticationManager'ı kullanılarak kullanıcının kimlik bilgilerinin doğrulanması gerçekleştirilir.
     @PostMapping("/getToken")
@@ -51,7 +53,5 @@ public class CustomerControler {
         }
         throw new UsernameNotFoundException("invalid user details"); //Eğer kimlik doğrulama başarısız olursa, yetersiz veya hatalı kullanıcı bilgileri nedeniyle bir UsernameNotFoundException fırlatılır.
     }
-
-
 
 }
