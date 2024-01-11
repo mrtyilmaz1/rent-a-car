@@ -8,6 +8,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -95,6 +97,18 @@ public class JwtService {
         // SECRET değişkeninden alınan BASE64 kodlu anahtarın byte dizisini elde eder
         return Keys.hmacShaKeyFor(keyBytes);
         // Elde edilen byte dizisinden bir HMAC-SHA anahtarı oluşturur ve geri döndürür
+    }
+
+    public void invalidateToken(HttpServletResponse response) {
+        // Client-side'da JWT'yi silmek için, örneğin, cookie kullanabilirsiniz.
+        // Cookie'yi silmek için response üzerinden işlem yapabilirsiniz.
+        Cookie cookie = new Cookie("JWT_TOKEN", null);
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+
     }
 
 
