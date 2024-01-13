@@ -37,7 +37,7 @@ public class SecurityConfig {
         http.cors(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(a -> a // HTTP isteklerinin yetkilendirme ayarlarını yapılandırır. authorizeHttpRequests metodu, istekleri hangi koşullar altında yetkilendireceğimizi belirlememize olanak tanır.
-                .requestMatchers("/customer/addCustomer", "/customer/getToken", "/customer/log", "/test/**").permitAll()
+                .requestMatchers("/customer/signup", "/customer/login", "/customer/log").permitAll()
                 // Belirli URL path'lerine yapılan istekleri herkese (authenticated veya anonymous) izin verir.
                 .requestMatchers(AUTH_WHITE_LIST).permitAll()
                 // AUTH_WHITE_LIST içinde belirtilen URL path'lerine yapılan istekleri herkese izin verir.

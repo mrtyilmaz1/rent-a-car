@@ -34,7 +34,7 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer signUp(Customer customer){
+    public Customer signup(Customer customer){
 
         if (Objects.isNull(customer.getRoles()) || customer.getRoles().equals(Roles.ROLE_ADMIN) ){
             customer.setRoles(Roles.ROLE_USER);

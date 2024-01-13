@@ -2,7 +2,6 @@ package com.x.rentacar.service;
 
 import com.x.rentacar.dto.AuthRequest;
 import com.x.rentacar.dto.LoginDto;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,10 +33,10 @@ public class AuthenticationService {
         throw new UsernameNotFoundException("invalid user details");
     }
 
-    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
-        jwtService.invalidateToken(response);
-        // İsteğe bağlı olarak başka temizleme işlemleri de yapılabilir, örneğin session temizleme vb.
-        return new ResponseEntity<>("Logout successful", HttpStatus.OK);
+    public void logout(HttpServletResponse response) {
+        // JWT token'ını geçersiz kıl
+        JwtService.invalidateToken(response);
+
     }
 
 }

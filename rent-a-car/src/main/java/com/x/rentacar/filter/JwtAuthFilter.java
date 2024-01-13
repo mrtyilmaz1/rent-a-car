@@ -1,6 +1,5 @@
 package com.x.rentacar.filter;
 
-import com.x.rentacar.config.JwtUserDetails;
 import com.x.rentacar.service.JwtService;
 import com.x.rentacar.service.UserInfoUserDetailsService;
 import jakarta.servlet.FilterChain;
@@ -32,7 +31,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         if (authHeader != null && authHeader.startsWith("Bearer ")){
             token = authHeader.substring(7); // 7. karakterden itibaren.
-            email = jwtService.extraractEmail(token);
+            email = jwtService.extractEmail(token);
         }
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = userDetailsService.loadUserByUsername(email);

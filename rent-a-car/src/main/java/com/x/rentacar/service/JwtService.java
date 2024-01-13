@@ -32,20 +32,20 @@ public class JwtService {
 
     public static final String SECRET = "404D635166546A576E5A7234753778214125442A472D4B6150645267556B5870";
 
-    public String extraractEmail(String token){ return extraractClaim(token, Claims::getSubject); }
+    public String extractEmail(String token){ return extractClaim(token, Claims::getSubject); }
     // bu metodun amacı JWT'den emaili çıkarmaktır.
 
-    public Date extractExpiration(String token){ return extraractClaim(token, Claims::getExpiration); }
+    public Date extractExpiration(String token){ return extractClaim(token, Claims::getExpiration); }
     // bu metodun amacı JWT'den son kullanma tarihini çıkarmaktır.
 
-    private <T> T extraractClaim(String token, Function<Claims, T> claimsResolver){
-        final Claims claims = extraractAllClaim(token);
-        // JWT'den tüm bilgileri çıkarmak için bir yardımcı metod olan extraractAllClaim metodunu çağır.
+    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+        final Claims claims = extractAllClaim(token);
+        // JWT'den tüm bilgileri çıkarmak için bir yardımcı metod olan extractAllClaim metodunu çağır.
         return claimsResolver.apply(claims);
         // Parametre olarak alınan claimsResolver fonksiyonunu kullanarak istenen bilgiyi çıkart ve geri döndür.
     }
 
-    private Claims extraractAllClaim(String token){
+    private Claims extractAllClaim(String token){
         return Jwts.parserBuilder()     // JWT parser'ını oluştur
                 .setSigningKey(getSignKey()).build() // İmza anahtarını almak için getSignKey() metodunu kullan
                 .parseClaimsJws(token).getBody();
@@ -56,7 +56,7 @@ public class JwtService {
     private Boolean isTokenExpired(String token){return extractExpiration(token).before(new Date()); }
 
     public Boolean validateToken(String token, UserDetails userDetails){
-        final String email = extraractEmail(token); // JWT'den e-posta adresini çıkart
+        final String email = extractEmail(token); // JWT'den e-posta adresini çıkart
         return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
         // Eğer e-posta adresi UserDetails nesnesinin kullanıcı adına (username) eşleşiyorsa ve token henüz geçerliyse, true döndür
     }
@@ -79,6 +79,7 @@ public class JwtService {
         // Eğer müşteri mevcutsa, müşteri kimliği (customerId) LoginDto'ya eklenir
         loginDto.setToken(createToken(claims, authentication.getName()));
         // Token oluşturulup LoginDto'nun içine yerleştirilir
+        // log.info(loginDto.getToken()); logout kontrolü için kullanılıyor.
         return loginDto;
     }
 
@@ -99,16 +100,17 @@ public class JwtService {
         // Elde edilen byte dizisinden bir HMAC-SHA anahtarı oluşturur ve geri döndürür
     }
 
-    public void invalidateToken(HttpServletResponse response) {
-        // Client-side'da JWT'yi silmek için, örneğin, cookie kullanabilirsiniz.
-        // Cookie'yi silmek için response üzerinden işlem yapabilirsiniz.
+    public static void invalidateToken(HttpServletResponse response) {
+
+
         Cookie cookie = new Cookie("JWT_TOKEN", null);
-        cookie.setMaxAge(0);
-        cookie.setHttpOnly(true);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-
-
+        cookie.setMaxAge(0); // Çerezin geçerlilik süresi (max age) sıfıra ayarlanır. Bu, tarayıcıya çerezin hemen silinmesi gerektiğini söyler.
+        cookie.setHttpOnly(false); // swagerde kullanabilmek için.
+        cookie.setPath("/"); // Çerezin geçerli olduğu URL yolu belirlenir. "/" ifadesi, çerezin uygulamanın kök dizininden geçerli olmasını sağlar.
+        response.addCookie(cookie); // Belirtilen çerez, HTTP yanıtına eklenir ve istemciye gönderilir.
+        /* LoginDto loginDto = new LoginDto();
+           log.info(loginDto.getToken()); logout kontrolü için kullanılıyor. */
+        log.info("token sıfırlandı.");
     }
 
 
