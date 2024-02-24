@@ -66,4 +66,11 @@ public class CarController {
                          @RequestPart("car") Car car){
         return carService.updateCar(file,car);
     }
+
+    @GetMapping("/brand/{brandId}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+    public ResponseEntity<List<Car>> getProductList(@PathVariable(value = "brandId") Long brandId) {
+        return new ResponseEntity<>(carService.getBrandList(brandId), HttpStatus.OK);
+    }
+
 }
