@@ -5,6 +5,7 @@ import com.x.rentacar.service.UserInfoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -40,6 +41,7 @@ public class SecurityConfig {
                 .requestMatchers("/customer/signup", "/customer/login", "/customer/log").permitAll()
                 // Belirli URL path'lerine yapılan istekleri herkese (authenticated veya anonymous) izin verir.
                 .requestMatchers(AUTH_WHITE_LIST).permitAll()
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 // AUTH_WHITE_LIST içinde belirtilen URL path'lerine yapılan istekleri herkese izin verir.
                 .anyRequest().authenticated())
                 // Diğer tüm istekleri ise sadece kimlik doğrulaması yapılmış (authenticated) kullanıcılara izin verir.

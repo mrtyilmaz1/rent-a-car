@@ -14,6 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/car")
 @RequiredArgsConstructor
+@CrossOrigin(maxAge = 3600)
+
 public class CarController {
 
     private final CarService carService;
