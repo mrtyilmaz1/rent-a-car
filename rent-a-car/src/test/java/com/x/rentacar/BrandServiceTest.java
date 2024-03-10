@@ -52,12 +52,22 @@ public class BrandServiceTest {
     public void testGetBrandList() {
         // Test için kullanılacak örnek markalar
         Brand brand1 = new Brand();
-        brand1.setId(1L);
-        brand1.setBrand(Brands.HONDA);
+        brand1.setId(1L); brand1.setBrand(Brands.RENAULT);
 
         Brand brand2 = new Brand();
-        brand2.setId(2L);
-        brand2.setBrand(Brands.FIAT);
+        brand2.setId(2L); brand2.setBrand(Brands.HONDA);
+
+        Brand brand3 = new Brand();
+        brand3.setId(3L); brand3.setBrand(Brands.AUDI);
+
+        Brand brand4 = new Brand();
+        brand4.setId(4L); brand4.setBrand(Brands.OPEL);
+
+        Brand brand5 = new Brand();
+        brand5.setId(5L); brand5.setBrand(Brands.TOYOTA);
+
+        Brand brand6 = new Brand();
+        brand6.setId(6L); brand6.setBrand(Brands.FIAT);
 
         List<Brand> expectedBrands = Arrays.asList(brand1, brand2);
 
