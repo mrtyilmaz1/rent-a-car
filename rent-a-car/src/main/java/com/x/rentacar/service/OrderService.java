@@ -27,7 +27,7 @@ public class OrderService {
     private final OrderDetailRepository orderDetailRepository;
     private final CarRepository carRepository;
 
-    private void carUnitStockCheck(List<OrderCarInfo> orderCarInfoList) {
+    public void carUnitStockCheck(List<OrderCarInfo> orderCarInfoList) {
 
         orderCarInfoList.forEach(carInfo -> {
             Long carStock = Long.valueOf(carRepository.findById(carInfo.getCarId())
