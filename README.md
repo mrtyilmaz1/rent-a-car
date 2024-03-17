@@ -1,6 +1,6 @@
 # **rent-a-car**
 Araç Kiralama Uygulaması
-![Swagger](C:/Users/murat/Downloads/SS-rentacar.png)
+![Swagger](SS-rentacar.png)
 
 # Proje Detayı
 &bull; Kullanıcı Tarafı
