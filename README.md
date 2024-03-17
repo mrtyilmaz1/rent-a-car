@@ -23,14 +23,21 @@ Araç Kiralama Uygulaması
 
 
 # Kullanılan Teknolojiler  
+
 &#x25cb; Java 17+
+
 &#x25cb; Maven 4.0+
+
 &#x25cb; Spring-Boot 3.1.5+
+
 &#x25cb; Swagger Doc
+
 &#x25cb; Slf4j Logging
+
 &#x25cb; Mockito -> Unit Test
 
 # Swagger Documentation
+
 &bull; http://localhost:8081/swagger-ui
 
 
