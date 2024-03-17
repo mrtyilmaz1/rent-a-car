@@ -1,17 +1,23 @@
 # **rent-a-car**
 Araç Kiralama Uygulaması
+
 ![Swagger](SS-rentacar.png)
 
 # Proje Detayı
 &bull; Kullanıcı Tarafı
+
      &#x25A0; JWT entegrasyonu yapılmıştır.
      &#x25A0; Kullanıcı sisteme üye olabilir.
      &#x25A0; Kullanıcı login olaiblir.
      &#x25A0; Kullanıcı logout olabilir.
+
 &bull; Kullanıcı Login Olduktan Sonra
+
      &#x25A0; Kullanıcı markaya göre araç seçip sepete ekleyebilir.
      &#x25A0; Kullanıcı admin ise araç ekleyebilir, var olan aracı güncelleyebilir veya silebilir.
+
 &bull; Bonus
+
     &#x25A0; Uygulama ayağa kalkarken otomatik DB oluşturulmaktadır. Her tabloya en az 2 kayıt atılmıştır.
 
 
