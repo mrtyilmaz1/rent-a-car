@@ -46,12 +46,12 @@ public class CustomerControler {
         return authenticationService.authenticateAndGetToken(authRequest);
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpServletResponse response) {
 
 
         authenticationService.logout(response);
-        return "redirect:/"; // Oturumdan çıkış yapıldıktan sonra yönlendirilecek sayfa
+        return "redirect:/login"; // Oturumdan çıkış yapıldıktan sonra yönlendirilecek sayfa
     }
 
 
